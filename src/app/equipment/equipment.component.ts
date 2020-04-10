@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-equipment',
@@ -23,6 +24,21 @@ export class EquipmentComponent implements OnInit {
    maxItems: number = 10;
 
    constructor() { }
+
+   addItem(newName: string, newMass: number){
+     this.cargoHold.push({name: newName, mass: newMass});
+     this.cargoMass += newMass; 
+    if (this.maximumAllowedMass - this.cargoMass <= 200){
+      return true;}
+      else {
+        return false;
+      }
+   }
+
+   emptyHold(){
+     this.cargoHold = [];
+     this.cargoMass = 0;
+   }
 
    ngOnInit() { }
 
